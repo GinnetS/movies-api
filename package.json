@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "API REST Node.js + TypeScript + TypeORM para gestionar usuarios, películas y categorías (PostgreSQL local, sin Docker).",
   "main": "dist/server.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

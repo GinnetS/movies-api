@@ -11,9 +11,10 @@ async function main() {
   try {
     await AppDataSource.initialize();
     await bootstrap(); 
-    app.listen(PORT, () => {
-      console.log(`[movies-api] listening on http://localhost:${PORT}`);
-    });
+    app.listen(PORT, '0.0.0.0', () => {
+    console.log(`[movies-api] listening on http://0.0.0.0:${PORT}`);
+});
+
   } catch (err) {
     console.error('Error initializing app:', err);
     process.exit(1);
