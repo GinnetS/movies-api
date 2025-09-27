@@ -1,23 +1,34 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import * as dotenv from 'dotenv';
-dotenv.config();
-
-
-import { Category } from '../categories/category.entity';
-
-import { Watched } from '../watched/watched.entity';
-import { User } from '../module/user/entity/user.entity';
+import path from 'path';
 import { Movie } from '../module/movies/entity/movie.entity';
+import { User } from '../module/user/entity/user.entity';
 
-export const AppDataSource = new DataSource({
-  type: 'postgres',
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT),
-  username: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  synchronize: true,
-  logging: false,
-  entities: [User, Category, Movie, Watched],
-});
+const dbUrl = process.env.DATABASE_URL;
+
+export const AppDataSource = new DataSource(
+  dbUrl
+    ? {
+        
+        type: 'postgres',
+        url: dbUrl,
+        ssl: { rejectUnauthorized: false }, 
+        logging: false,
+        synchronize: false,                 
+        entities: [User, Movie, path.join(__dirname, '..', '**', '*.entity.js')],
+        migrations: [path.join(__dirname, '..', 'migrations', '*.{js}')],
+      }
+    : {
+      
+        type: 'postgres',
+        host: process.env.DB_HOST,
+        port: Number(process.env.DB_PORT),
+        username: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        logging: false,
+        synchronize: true,
+        entities: [User, Movie, 'src/**/*.entity.ts'],
+        migrations: ['src/migrations/*.{ts}'],
+      }
+);
