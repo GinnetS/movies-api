@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Movie } from '../movies/movie.entity';
+import { Movie } from '../module/movies/entity/movie.entity';
+
 
 @Entity()
 export class Category {

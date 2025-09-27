@@ -1,6 +1,6 @@
 import express from 'express';
-import { router as usersRouter } from './routes/users';
-import { router as moviesRouter } from './routes/movies';
+import { router as usersRouter } from './module/user/routes/users';
+import { router as moviesRouter } from './module/movies/routes/movies';
 
 export const app = express();
 app.use(express.json());

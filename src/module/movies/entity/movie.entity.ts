@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, Index } from 'typeorm';
-import { Category } from '../categories/category.entity';
+import { Category } from '../../../categories/category.entity';
+
 
 @Entity()
 export class Movie {

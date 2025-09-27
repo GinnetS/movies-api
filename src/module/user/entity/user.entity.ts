@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import { Watched } from '../watched/watched.entity';
+import { Watched } from '../../../watched/watched.entity';
+
 
 @Entity()
 export class User {

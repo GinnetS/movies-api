@@ -1,6 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, Unique } from 'typeorm';
-import { User } from '../users/user.entity';
-import { Movie } from '../movies/movie.entity';
+
+
+import { User } from '../module/user/entity/user.entity';
+import { Movie } from '../module/movies/entity/movie.entity';
 
 @Entity()
 @Unique(['user', 'movie'])

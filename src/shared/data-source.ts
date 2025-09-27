@@ -3,10 +3,12 @@ import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { User } from '../users/user.entity';
+
 import { Category } from '../categories/category.entity';
-import { Movie } from '../movies/movie.entity';
+
 import { Watched } from '../watched/watched.entity';
+import { User } from '../module/user/entity/user.entity';
+import { Movie } from '../module/movies/entity/movie.entity';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
