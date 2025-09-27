@@ -30,6 +30,7 @@ export const AppDataSource = new DataSource(
         database: process.env.DB_NAME!,
         logging: false,
         synchronize: true,
+        ssl: { rejectUnauthorized: false },   
         entities: [User, Category, Movie, Watched],
       }
 );

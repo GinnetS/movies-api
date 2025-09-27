@@ -9,16 +9,21 @@ import { bootstrap } from './shared/bootstrap';
 const PORT = Number(process.env.PORT || 3000);
 
 async function main() {
+    const isProd = process.env.NODE_ENV === 'production';
   try {
-    if (process.env.DATABASE_URL) {
-      await AppDataSource.initialize();
-      console.log('DB initialized (Heroku).');
+   if (isProd) {
+      if (process.env.DATABASE_URL) {
+        await AppDataSource.initialize();
+        console.log('DB initialized with DATABASE_URL');
+        await bootstrap();
+      } else {
+        console.log('No DATABASE_URL on Heroku. Skipping DB initialization for now.');
+      }
     } else {
-      // local
+ 
       await AppDataSource.initialize();
+      await bootstrap();
     }
-
-    await bootstrap?.();
 
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`[movies-api] listening on http://0.0.0.0:${PORT}`);
